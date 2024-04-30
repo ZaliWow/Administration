@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react"
 import { client } from "../supabaseConfig/client"
-
 export function CreateProduct(params) {
 
 
