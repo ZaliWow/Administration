@@ -10,16 +10,16 @@ export function Home(params) {
         const { error } = await client.auth.signOut()
         navigate("/")
     }
-    useEffect(()=>{
-       if(! client.auth.getUser()){
-        navigate("/")
-       }
-    },[])
-    return(
+    useEffect(() => {
+        if (!client.auth.getUser()) {
+            navigate("/")
+        }
+    }, [])
+    return (
         <div>
             <h1>Home</h1>
-                      <button onClick={signOut}>logout</button>  
-<CreateProduct></CreateProduct>
+            <button onClick={signOut}>logout</button>
+            <CreateProduct></CreateProduct>
         </div>
     )
 }

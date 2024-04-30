@@ -2,7 +2,7 @@ import { Login } from './components/Login'
 import { Home } from './components/Home'
 import { NotFound } from './components/NotFound'
 import './App.css'
-import { Routes,  Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { client } from './supabaseConfig/client'
 
@@ -16,7 +16,7 @@ function App() {
       } else {
         navigate("/")
       }
-   
+
     })
   }, [])
 
