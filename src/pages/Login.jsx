@@ -10,17 +10,17 @@ export function Login(params) {
 const navigate = useNavigate()
     async function signInWithEmail(e) {
         e.preventDefault()
-    //    const { data, error } = await client.auth.signInWithOtp({
-       //     email: emailUser,
-      //      options: {
+        const { data, error } = await client.auth.signInWithOtp({
+           email: emailUser,
+           options: {
                 // set this to false if you do not want the user to be automatically signed up
-        //        shouldCreateUser: false,
-       //         emailRedirectTo: 'https://proyecto-william-david-morales.netlify.app/',
-       //     },
-    //    })
+            shouldCreateUser: false,
+               emailRedirectTo: 'https://proyecto-william-david-morales.netlify.app/',
+           },
+        })
 navigate("/")
     }
-//
+
     return (
         <div className="body-login">
             <form onSubmit={signInWithEmail} className="form-login">
