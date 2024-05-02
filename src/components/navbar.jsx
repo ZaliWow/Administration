@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
-
+import { client } from "../supabaseConfig/client"
 
 
 const pages = ['Nuevo productos','Mis productos'];
@@ -27,6 +27,7 @@ const navigate = useNavigate()
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   async function signOut() {
     const { error } = await client.auth.signOut()
     navigate("/login")
