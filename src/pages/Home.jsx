@@ -18,6 +18,7 @@ export function Home(params) {
             navigate("/login")
         }
     }, [])
+    
     return (
        <div>
 <h1>espero funcione</h1>

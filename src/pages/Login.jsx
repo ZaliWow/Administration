@@ -9,6 +9,7 @@ export function Login(params) {
     const [emailUser, setUser] = useState("")
 const navigate = useNavigate()
     async function signInWithEmail(e) {
+
         e.preventDefault()
         const { data, error } = await client.auth.signInWithOtp({
            email: emailUser,
@@ -18,7 +19,8 @@ const navigate = useNavigate()
                emailRedirectTo: 'https://proyecto-william-david-morales.netlify.app/',
            },
         })
-navigate("/")
+       console.log("email send")
+
     }
 
     return (

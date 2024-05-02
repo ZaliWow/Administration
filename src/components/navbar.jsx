@@ -27,9 +27,10 @@ const navigate = useNavigate()
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  async function signOut() {
+    const { error } = await client.auth.signOut()
+    navigate("/login")
+}
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -49,8 +50,7 @@ const navigate = useNavigate()
      <AppBar position="static" elevation={0} sx={{background:'black'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
+             <Typography
             variant="h6"
             noWrap
             component="a"
@@ -137,9 +137,9 @@ const navigate = useNavigate()
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+              <Button onClick={signOut} sx={{ p: 0 }}>
+                Logout
+              </Button>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
