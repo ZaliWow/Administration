@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { client } from "../supabaseConfig/client"
 
 
-const pages = ['Nuevo productos','Mis productos'];
+const pages = ['nuevo producto','mis productos'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
@@ -35,14 +35,15 @@ const navigate = useNavigate()
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-    navigate("crear/producto")
+    
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-
+  const handleNavigate = (page) => {
+   navigate(page.replace(/ /g, "/"))
+  }
 
 
 
@@ -131,17 +132,17 @@ const navigate = useNavigate()
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                a
+                <p onClick={()=>handleNavigate(page)}>{page}</p>
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <Button onClick={signOut} sx={{ p: 0 }}>
-                Logout
+            
+              <Button onClick={signOut} sx={{ ':hover':{color:'white'}, backgroundColor:'white', color:'black'}}>
+               Cerrar sesión
               </Button>
-            </Tooltip>
+            
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

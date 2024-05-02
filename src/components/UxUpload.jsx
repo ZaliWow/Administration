@@ -1,0 +1,44 @@
+
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { UploadFile } from '@mui/icons-material';
+import CircularProgress from "@mui/material/CircularProgress"
+
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 20,
+  bgcolor: 'rbga(0,0,0,0.8)',
+  boxShadow: 0,
+  p: 4,
+};
+
+export  function UxUpload({uxUpload, setUxUpload}) {
+ 
+  const handleClose = () => setUxUpload(false);
+
+  return (
+    <div>
+     
+      <Modal
+        open={uxUpload}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+        
+        <CircularProgress />
+
+        </Box>
+      </Modal>
+    </div>
+  );
+}

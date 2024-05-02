@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { client } from "../supabaseConfig/client"
 import "../styles/login.css"
 import { useNavigate } from "react-router-dom"
@@ -7,9 +7,13 @@ import { useNavigate } from "react-router-dom"
 export function Login(params) {
 
     const [emailUser, setUser] = useState("")
-const navigate = useNavigate()
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (client.auth.getUser()) {
+            navigate("/")
+        }
+    }, [])
     async function signInWithEmail(e) {
-
         e.preventDefault()
         const { data, error } = await client.auth.signInWithOtp({
            email: emailUser,
@@ -19,7 +23,7 @@ const navigate = useNavigate()
                emailRedirectTo: 'https://proyecto-william-david-morales.netlify.app/',
            },
         })
-       console.log("email send")
+       console.log(emailUser)
 
     }
 

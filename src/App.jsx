@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { client } from './supabaseConfig/client'
 import { NavbarHome } from './components/navbar'
 import { CreateProduct } from './components/CreateProduct'
+import { Products } from './components/Products'
 
 function App() {
   const [loged, setLoged]= useState(false)
@@ -31,7 +32,8 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
-        <Route path='/crear/producto' element={<CreateProduct></CreateProduct>}></Route>
+        <Route path='/nuevo/producto' element={<CreateProduct></CreateProduct>}></Route>
+      <Route path='/mis/productos' element={<Products></Products>}></Route>
       </Routes>
     </>
   )

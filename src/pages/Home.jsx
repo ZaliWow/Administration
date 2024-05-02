@@ -21,7 +21,7 @@ export function Home(params) {
     
     return (
        <div>
-<h1>espero funcione</h1>
+<h1>Welcome to the hermanos pollos family</h1>
         </div>
     )
 }
