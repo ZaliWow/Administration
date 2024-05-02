@@ -8,11 +8,7 @@ export function Login(params) {
 
     const [emailUser, setUser] = useState("")
     const navigate = useNavigate()
-    useEffect(() => {
-        if (client.auth.getUser()) {
-            navigate("/")
-        }
-    }, [])
+   
     async function signInWithEmail(e) {
         e.preventDefault()
         const { data, error } = await client.auth.signInWithOtp({
