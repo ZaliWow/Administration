@@ -124,10 +124,10 @@ return(
               <h6> {product.title}</h6>
               <img src={product.image} alt="" />
               <h6>$ {product.price}</h6>
-              <h6>{product.description}</h6>
-              <div>
-              <Button onClick={()=>handleShowEditProducts(product)}><Edit></Edit></Button> 
-              <Button onClick={()=>setIdDelete(product.id)}><Delete></Delete></Button>
+              <h5>{product.description}</h5>
+              <div className="buttons-crud">
+              <Button onClick={()=>handleShowEditProducts(product)}><Edit sx={{color:'green'}}></Edit></Button> 
+              <Button onClick={()=>setIdDelete(product.id)}><Delete sx={{color:'red'}}></Delete></Button>
               </div>
               
               <EditProducts setShowEditProducts={setShowEditProducts} showEditProducts={showEditProducts} product={editProduct}></EditProducts>
@@ -138,9 +138,9 @@ return(
 
  </main>
  <div className="pagination">
-     <Button onClick={prevPage}>-</Button>
+     <Button onClick={prevPage} sx={{color:'red'}}>-</Button>
 <p>{actualPage} / {numberPages}</p>
-     <Button onClick={nextPage}>+</Button>
+     <Button onClick={nextPage} sx={{color:'green'}}>+</Button>
  </div>
  </div>
 )

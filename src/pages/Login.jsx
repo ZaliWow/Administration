@@ -42,6 +42,8 @@ handleToken()
     return (
         <div className="body-login">
             <form onSubmit={signInWithEmail} className="form-login">
+            <h1>Bienvenido a la administración de la Kasa de Klaus</h1>
+         
                 <h3>Ingresa tu email</h3>
                 <div className="email">
                 <input type="text" name="email" placeholder="Ingresa tu email" onChange={e => setUser(e.target.value)} />
