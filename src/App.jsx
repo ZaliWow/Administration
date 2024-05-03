@@ -6,26 +6,29 @@ import { useEffect, useState } from 'react'
 import { client } from './supabaseConfig/client'
 import { NavbarHome } from './components/navbar'
 import { CreateProduct } from './components/CreateProduct'
-import { Products } from './components/Products'
+
+import { ProductsList } from './components/ProductsList'
+
 
 function App() {
+
   const [loged, setLoged]= useState(false)
   const navigate = useNavigate()
+
   useEffect(() => {
-   client.auth.onAuthStateChange((event, session) => {
-     if (!session) {
-      setLoged(false)
-       navigate("/login")
-      }else{
-        
-        setLoged(true)
-      }
+    client.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+       setLoged(false)
+        navigate("/login")
+       }else{
+         
+         setLoged(true)
+       }
+ 
+     })
+  }, [])
 
-    })
- }, [])
-
-
-  return (
+  return ( 
     <>
       {loged ? <NavbarHome></NavbarHome>  : ""}
       <Routes>
@@ -33,7 +36,8 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
         <Route path='/nuevo/producto' element={<CreateProduct></CreateProduct>}></Route>
-      <Route path='/mis/productos' element={<Products></Products>}></Route>
+        <Route path='/mis/productos' 
+        element={<ProductsList ></ProductsList>}></Route>
       </Routes>
     </>
   )

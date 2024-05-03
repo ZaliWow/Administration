@@ -21,34 +21,35 @@ const style = {
   width: 300,
   bgcolor: 'white',
   boxShadow: 0,
-  borderRadius:'5%',
+  borderRadius: '5%',
   p: 4,
 };
 
-export  function EditProducts({showEditProducts, setShowEditProducts, product}) {
+export function EditProducts({ showEditProducts, setShowEditProducts, product }) {
 
-    
 
-const [bodyEditProduct, setBodyEditProduct]= useState(
+
+  const [bodyEditProduct, setBodyEditProduct] = useState(
     product
-)
+  )
 
-const handleClose = () => setShowEditProducts(false);
-const handleEditProduct = ()=>{ 
-    console.log(bodyEditProduct)
+  const handleClose = () => setShowEditProducts(false);
+  
+  const handleEditBodyNewProduct = (e) => {
+    setBodyEditProduct(prevState => ({
+      
+        ...prevState,
+         [e.target.name]: e.target.value 
+    }))
+  }
 
-}
-const handleEditBodyNewProduct = (e) => {
-    setBodyEditProduct({ ...bodyEditProduct, [e.target.name]: e.target.value })
-}
 
-
- //photo states
- const [uxUpload, setUxUpload] = useState(false)
- const [alertState, setAlertState]= useState(false)
- const [fileFoto, setFileFoto] = useState(null)
- const [idFoto, setIdFoto] = useState()
- //upload foto logic
+  //photo states
+  const [uxUpload, setUxUpload] = useState(false)
+  const [alertState, setAlertState] = useState(false)
+  const [fileFoto, setFileFoto] = useState(null)
+  const [idFoto, setIdFoto] = useState()
+  //upload foto logic
 
   const handleIdFoto = () => {
 
@@ -77,45 +78,47 @@ const handleEditBodyNewProduct = (e) => {
     handleIdFoto()
   }
 
-  const handleUploadFoto = async()=>{
-    if(fileFoto !== null)
-try {
-  setUxUpload(true)
-   const storageRef = ref(storage, idFoto)
-    await uploadBytes(storageRef, fileFoto)
-    const url = await getDownloadURL(storageRef)
-    setBodyEditProduct({ ...bodyEditProduct, image: url })
-    setUxUpload(false)
-} catch (error) {
-  console.log(error)
-}
-  }
-useEffect(() =>{
-handleUploadFoto()
-},[fileFoto])
- 
-
-
-
-
-const handleUpdate = async (e) =>{
+  const handleUploadFoto = async () => {
+    if (fileFoto !== null)
+      try {
         setUxUpload(true)
-        const { data, error } = await client
-        .from('products').update(bodyEditProduct).eq('id', parseInt(bodyEditProduct.id)).select()
-       
-        if (error) throw error
-        console.log(data)
+        const storageRef = ref(storage, idFoto)
+        await uploadBytes(storageRef, fileFoto)
+        const url = await getDownloadURL(storageRef)
+        setBodyEditProduct({ ...bodyEditProduct, image: url })
         setUxUpload(false)
+      } catch (error) {
+        console.log(error)
       }
+  }
+  useEffect(() => {
+    handleUploadFoto()
+  }, [fileFoto])
+
+
+
+
+
+  const handleUpdate = async () => {
+    setUxUpload(true)
+    const { data, error } = await client
+      .from('products').update(bodyEditProduct).eq('id', parseInt(product.id)).select()
+
+    if (error) throw error
+    
+    setUxUpload(false)
+    setShowEditProducts(false)
+   
+  }
 
 
 
 
 
 
-  return (
+  if (showEditProducts === true) return (
     <div>
-     
+
       <Modal
         open={showEditProducts}
         onClose={handleClose}
@@ -123,25 +126,28 @@ const handleUpdate = async (e) =>{
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <form >
-<p>Cambiar titulo</p>
-<Input type="text" placeholder={product.title} name="title" onChange={handleEditBodyNewProduct}></Input>
-<p>Cambiar descripción</p>
-<Input type="text" placeholder={product.description} name="description" onChange={handleEditBodyNewProduct}></Input>
-<p>Cambiar imagen</p>
-<Input type="file" placeholder='Nueva Imagen' name="image" onChange={handleFileChange}></Input>
-<p>Cambiar precio</p>
-<Input type="number" placeholder={toString(product.price)} name="price" onChange={handleEditBodyNewProduct}></Input>
-
-
-
-
-        </form>
+          <form  >
+            <p>Cambiar titulo</p>
+            <Input type="text" placeholder={product.title} name="title" onChange={handleEditBodyNewProduct}></Input>
+            <p>Cambiar descripción</p>
+            <Input type="text" placeholder={product.description} name="description" onChange={handleEditBodyNewProduct}></Input>
+            <p>Cambiar imagen</p>
+            <img style={{width:'100px'}} src={product.image} alt="" />
         
-<Button onClick={handleUpdate} sx={{color:'white', backgroundColor:'black', marginTop:'10px', ':hover':{color:'black'}}}>Realizar cambios</Button>
+            <Input type="file" placeholder='Nueva Imagen' name="image" onChange={handleFileChange}></Input>
+            <p>Cambiar precio</p>
+            <Input type="number" placeholder={toString(product.price)} name="price" onChange={handleEditBodyNewProduct}></Input>
+            <p>cambiar tipo :{product.type}</p>
+
+
+          </form>
+
+          <Button onClick={handleUpdate} sx={{ color: 'white', backgroundColor: 'black', marginTop: '10px', ':hover': { color: 'black' } }}>Realizar cambios</Button>
+
+        
         </Box>
       </Modal>
-   
+
       <UxUpload uxUpload={uxUpload} setUxUpload={setUxUpload}></UxUpload>
     </div>
   );

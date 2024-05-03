@@ -101,7 +101,7 @@ const navigate = useNavigate()
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography onClick={()=>handleNavigate(page)} textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -159,11 +159,7 @@ const navigate = useNavigate()
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+             
             </Menu>
           </Box>
         </Toolbar>

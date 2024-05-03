@@ -10,13 +10,13 @@ export function Home(params) {
     const navigate = useNavigate()
     async function signOut() {
         const { error } = await client.auth.signOut()
-        navigate("/login")
+        navigate("/login") 
     }
     
     useEffect(() => {
         if (!client.auth.getUser()) {
-            navigate("/login")
-        }
+            navigate("/login") 
+        } 
     }, [])
     
     return (

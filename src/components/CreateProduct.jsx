@@ -85,7 +85,7 @@ useEffect(() =>{
 handleUploadFoto()
 },[fileFoto])
 useEffect(()=>{
-  if(bodyProduct.title !== "" && bodyProduct.image !=="" && bodyProduct.price !=="" && bodyProduct.image !==0)
+  if(bodyProduct.type !== "" && bodyProduct.title !== "" && bodyProduct.image !=="" && bodyProduct.price !=="" && bodyProduct.image !==0)
   {setAlertState(true)
   console.log("ya es true")
   }

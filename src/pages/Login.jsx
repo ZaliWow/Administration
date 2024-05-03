@@ -23,6 +23,22 @@ export function Login(params) {
 
     }
 
+    useEffect(()=> 
+    {
+const handleToken =async ()=>{
+    const token = (
+        await client.auth.getSession()).data.session.access_token
+    
+    
+        if(token){
+            navigate("/")      }
+
+} 
+handleToken()
+    }
+  
+    ,[])
+
     return (
         <div className="body-login">
             <form onSubmit={signInWithEmail} className="form-login">
